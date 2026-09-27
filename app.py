@@ -36,7 +36,9 @@ df = charger_donnees()
 try:
     GROQ_API_KEY = st.secrets["GROQ_API_KEY"]
     client = Groq(api_key=GROQ_API_KEY)
-except Exception:
+    st.sidebar.success("✅ Clé Groq chargée : " + GROQ_API_KEY[:12] + "...")
+except Exception as e:
+    st.sidebar.error(f"❌ Erreur secrets : {e}")
     client = None
 
 
