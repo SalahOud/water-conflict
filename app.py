@@ -1,7 +1,7 @@
 import streamlit as st
 import folium
 import pandas as pd
-from streamlit_folium import st_folium
+from streamlit_folium import folium_static
 from groq import Groq
 import re
 import unicodedata
@@ -232,28 +232,31 @@ for _, row in df_filtre.iterrows():
         tooltip=f"{row['nom']} — {row['statut']}"
     ).add_to(m)
 
-st_folium(m, width="stretch", height=550, returned_objects=[])
+folium_static(m, width=1400, height=550)
 
 # --- Fiche détaillée ---
 st.subheader("📋 Fiche d'une zone")
-zone_choisie = st.selectbox("Sélectionnez une zone", df_filtre["nom"].tolist())
+if len(df_filtre) > 0:
+    zone_choisie = st.selectbox("Sélectionnez une zone", df_filtre["nom"].tolist())
 
-if zone_choisie:
-    z = df[df["nom"] == zone_choisie].iloc[0]
-    st.markdown(f"""
-    ### 💧 {z['nom']}
+    if zone_choisie:
+        z = df[df["nom"] == zone_choisie].iloc[0]
+        st.markdown(f"""
+        ### 💧 {z['nom']}
 
-    | Champ | Valeur |
-    |-------|--------|
-    | **🌍 Région** | {z['region']} |
-    | **👥 Pays concernés** | {z['pays_concernes']} |
-    | **🌊 Ressource** | {z['ressource_en_eau']} ({z['type']}) |
-    | **📍 Coordonnées** | {z['latitude']}°, {z['longitude']}° |
-    | **🚨 Statut** | {z['statut']} |
-    | **⚠️ Enjeux** | {z['enjeux']} |
-    | **📖 Description** | {z['description']} |
-    | **📚 Sources** | {z['sources']} |
-    """)
+        | Champ | Valeur |
+        |-------|--------|
+        | **🌍 Région** | {z['region']} |
+        | **👥 Pays concernés** | {z['pays_concernes']} |
+        | **🌊 Ressource** | {z['ressource_en_eau']} ({z['type']}) |
+        | **📍 Coordonnées** | {z['latitude']}°, {z['longitude']}° |
+        | **🚨 Statut** | {z['statut']} |
+        | **⚠️ Enjeux** | {z['enjeux']} |
+        | **📖 Description** | {z['description']} |
+        | **📚 Sources** | {z['sources']} |
+        """)
+else:
+    st.warning("Aucune zone ne correspond à vos filtres.")
 
 # --- Chatbot ---
 st.subheader("💬 Posez une question")
