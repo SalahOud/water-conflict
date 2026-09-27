@@ -237,7 +237,12 @@ folium_static(m, width=1400, height=550)
 # --- Fiche détaillée ---
 st.subheader("📋 Fiche d'une zone")
 if len(df_filtre) > 0:
-    zone_choisie = st.selectbox("Sélectionnez une zone", df_filtre["nom"].tolist())
+    zone_choisie = st.selectbox(
+        "Sélectionnez une zone",
+        df_filtre["nom"].tolist(),
+        index=None,
+        placeholder="Sélectionnez une zone..."
+    )
 
     if zone_choisie:
         z = df[df["nom"] == zone_choisie].iloc[0]
