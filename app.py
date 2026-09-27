@@ -110,7 +110,7 @@ CAS 1 — La question porte sur un conflit, une tension ou un enjeu hydrique ré
 → Réponds normalement en te basant sur le CONTEXTE fourni, de façon factuelle et sourcée.
 
 CAS 2 — La question porte sur une région, un pays ou un cours d'eau précis, mais que le CONTEXTE ne fait état d'aucun conflit, tension ou enjeu hydrique documenté pour cette zone :
-→ Indique clairement et honnêtement qu'aucun conflit ou tension liée à l'eau n'est recensé (ou n'est présent dans le contexte fourni) pour cette région. Ne force jamais une réponse en inventant un problème qui n'existe pas. Précise que l'absence d'information dans le contexte ne signifie pas nécessairement une absence totale de problème, mais qu'aucun élément ne permet de l'affirmer.
+→ Indique clairement qu'il n'existe aucun conflit, tension ou problématique liée à l'eau pour cette région. Exemple de formulation : "Il n'y a pas de conflit ou de problématique liée à l'eau recensé(e) pour cette région."
 
 CAS 3 — La question ne concerne pas du tout l'eau, les conflits hydriques, les bassins transfrontaliers ou la géopolitique de l'eau (sujet totalement hors thème) :
 → Refuse poliment de répondre et rappelle ton champ de compétence, sans essayer de recentrer artificiellement une question qui n'a aucun lien avec le sujet. Exemple de formulation : "Je suis spécialisé dans les conflits et enjeux géopolitiques liés à l'eau ; je ne peux pas répondre à cette question qui sort de ce cadre."
@@ -163,8 +163,7 @@ def repondre(question):
     except Exception:
         reponse = "⚠️ Service IA temporairement indisponible. Veuillez réessayer plus tard."
 
-    zones_src = ", ".join(sous_df["nom"].tolist())
-    reponse += f"\n\n---\n📚 **Zones mobilisées :** {zones_src}"
+    
     return reponse, zone
 
 # ============================================================
