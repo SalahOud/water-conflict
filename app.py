@@ -25,7 +25,7 @@ st.set_page_config(
 # STYLE
 # ============================================================
 
-css_file = Path("assets/style.css")
+css_file = Path("style.css")
 
 if css_file.exists():
     with open(css_file, "r", encoding="utf-8") as f:
