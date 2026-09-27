@@ -282,8 +282,7 @@ if st.button("Envoyer") and question:
     with st.spinner("Analyse en cours..."):
         rep, zone = repondre(question)
     st.markdown(rep)
-    if zone is not None:
-        st.caption(f"📌 Zone identifiée : {zone['nom']}")
+    
 
 st.markdown("---")
 st.caption("🌍 WATER CONFLICT — Anas OUDADDA / Master Hydroprotech")
