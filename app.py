@@ -206,7 +206,7 @@ couleurs = {
     "🟡": "gold", "🟢": "green"
 }
 
-m = folium.Map(location=[20, 10], zoom_start=2, tiles="CartoDB positron")
+m = folium.Map(location=[20, 10], zoom_start=2, tiles="OpenStreetMap")
 
 for _, row in df_filtre.iterrows():
     prefix = row["statut"][:1] if len(row["statut"]) > 0 else "🔴"
